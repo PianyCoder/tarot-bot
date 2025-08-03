@@ -11,6 +11,8 @@ import (
 	"net/http"
 )
 
+const maxTokens = 16384
+
 func (c *GenApi) formatPrompt(initialPrompt, userPrompt, formCards string) string {
 	return fmt.Sprintf("%s\nВопрос пользователя:\n%s\nПользователю выпали карты\n%s",
 		initialPrompt, userPrompt, formCards)
@@ -33,7 +35,7 @@ func (c *GenApi) createGenAPIRequest(prompt string) GenAPIRequest {
 		Stream:           false,
 		N:                1,
 		FrequencyPenalty: 0,
-		MaxTokens:        16384,
+		MaxTokens:        maxTokens,
 		PresencePenalty:  0,
 		Temperature:      1,
 		TopP:             1,
